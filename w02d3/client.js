@@ -1,9 +1,9 @@
 const net = require('net');
-const port = 19866;
+const port = 8008;
 
 const client = net.createConnection({
-  port: port,
-  host: '2.tcp.ngrok.io'
+  port: 80,
+  host: '2259-207-102-221-225.ngrok.io'
 });
 
 // set the encoding to utf-8

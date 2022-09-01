@@ -6,7 +6,7 @@ const connectedClients = [];
 const server = net.createServer();
 
 server.on('connection', (client) => {
-  console.log('client',client);
+  // console.log('client',client);
   console.log('connection received!!');
 
   connectedClients.push(client);
