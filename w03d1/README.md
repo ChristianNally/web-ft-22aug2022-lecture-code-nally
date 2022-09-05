@@ -21,17 +21,17 @@ Request = Verb + Path + Payload (name = value pairs)
 Response = Status Code + Body (HTML Document)
 
 # Web Server based on http package and NodeJS
-[] Build the basic Web Server with the HTTP package
+[x] Build the basic Web Server with the HTTP package
 
 
 #
 # Web Server using Express 
 #
 
-[] Routing system
-[] Less code, abstract the details away
-[] Template system (ejs), to create dynamic pages
-[] Middleware functions to make our life easier (bodyParser)
+[x] Routing system
+[x] Less code, abstract the details away
+[x] Template system (ejs), to create dynamic pages
+[x] Middleware functions to make our life easier (bodyParser)
 
 
 
