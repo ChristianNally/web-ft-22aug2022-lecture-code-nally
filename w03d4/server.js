@@ -1,46 +1,37 @@
 const express = require('express');
 const morgan = require('morgan');
 // const cookieParser = require('cookie-parser');
-const cookieSession = require('cookie-session'); // cookieSession
+const cookieSession = require('cookie-session');
+
 const bcrypt = require('bcrypt');
-const methodOverride = require('method-override'); // methodOverride
 
 const app = express();
 const port = process.env.PORT || 8080;
 
 // // middleware
 app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-app.use(morgan('dev'));
-app.use(express.static('public'));
 
-// cookieSession
+//app.use(cookieParser());
 app.use(cookieSession({
   name: 'cookiemonster',
   keys: ['my secret key', 'yet another secret key']
 }));
 
-app.use(methodOverride('_method')); // methodOverride
-
-// app.use((req, res, next) => {
-//   if (req.query._method) {
-//     req.method = req.query._method;
-//     next();
-//   }
-// });
+app.use(morgan('dev'));
+app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
 
 // user database
 const users = {
+  alice: {
+    username: 'alice',
+    password: '5678'
+  },
   jstamos: {
     username: 'jstamos',
     password: '$2b$10$7bOWn.DFgs9HkhzsTpuD1u6pReqRouddq.rO5xSKdWMZGXRehkS8e'
   },
-  alice: {
-    username: 'alice',
-    password: '5678'
-  }
 };
 
 // GET routes
@@ -55,7 +46,7 @@ app.get('/register', (req, res) => {
 
 app.get('/protected', (req, res) => {
   // const username = req.cookies.username;
-  const username = req.session.username; // cookieSession
+  const username = req.session.username;
 
   if (!username) {
     return res.redirect('/login');
@@ -70,55 +61,57 @@ app.get('/protected', (req, res) => {
   res.render('protected', { user });
 });
 
-// app.get('*', (req, res) => {
-//   res.redirect('/login');
-// });
-
 // // POST routes
-// // PATCH /login
-app.patch('/login', (req, res) => { // methodOverride
-  const username = req.body.username;
-  const password = req.body.password;
+app.post('/login', (req, res) => {
+  const testUsername = req.body.username;
+  const testPassword = req.body.password;
 
-  const user = users[username];
+  const user = users[testUsername];
   if (!user) {
     return res.status(401).send('No user with that username found');
   }
 
-  bcrypt.compare(password, user.password)
-    .then((result) => {
-      if (result) {
-        // res.cookie('username', user.username);
-        req.session.username = user.username; // cookieSession
-        res.redirect('/protected');
-      } else {
-        return res.status(401).send('Password incorrect');
-      }
-    });
+  bcrypt.compare(testPassword, users[testUsername].password)
+  .then((result) => {
+    if (result) {
+//      res.cookie('username', user.username);
+      req.session.username = user.username;
+      res.redirect('/protected');
+    } else {
+      return res.status(401).send('Password incorrect');
+    }
+  });
 
 });
 
 app.post('/register', (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  const newUsername = req.body.username;
+  const newPassword = req.body.password;
 
   bcrypt.genSalt(10)
     .then((salt) => {
-      return bcrypt.hash(password, salt);
+      return bcrypt.hash(newPassword,salt);
     })
     .then((hash) => {
-      users[username] = {
-        username,
+      // insert this hashed password as part of the new user's object
+      users[newUsername] = {
+        username: newUsername,
         password: hash
       };
-      console.log(users);
-      res.redirect('/login');
+      console.log('users',users);
     });
+
+  res.redirect('/login');
 });
 
 app.post('/logout', (req, res) => {
   // res.clearCookie('username');
-  req.session = null; // cookieSession
+  req.session = null;
+  res.redirect('/login');
+});
+
+// Catch All Route for GET
+app.get('*', (req, res) => {
   res.redirect('/login');
 });
 
