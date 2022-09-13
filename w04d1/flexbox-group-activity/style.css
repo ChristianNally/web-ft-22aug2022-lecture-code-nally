@@ -1,3 +1,4 @@
+
 .container {
   width: 100%;
   height: 90vh;
@@ -5,6 +6,9 @@
   border-radius: 5px;
   margin: 0.02em;
   background-color: peru;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .row {
@@ -13,26 +17,43 @@
   margin: 0.2em;
 }
 
-.row-1 {}
+.row-1 {
+  display: flex;
+  height: 66%;
+  justify-content: center;
+}
 
-.row-2 {}
+.row-2 {
+  display: flex;
+  height: 33%;
+}
 
 .spot {
-  font-size: 3em;
+  font-size: 4rem;
   border: 1px dashed gold;
   border-radius: 5px;
   margin: 0.02em;
+  height: 70px;
 }
 
-.corn {}
+.corn {
+  align-self: center;
+}
 
-.tomato {}
+.tomato {
+  align-self: flex-start;
+}
 
-.mushroom {}
+.mushroom {
+  align-self: flex-end;
+}
 
-.eggplant {}
+.eggplant {
+}
 
-.strawberry {}
+.strawberry {
+  order: -1;
+}
 
 .pepper {}
 

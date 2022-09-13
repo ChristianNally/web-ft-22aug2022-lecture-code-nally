@@ -6,27 +6,29 @@
   <title>Document</title>
 <style>
 html {
+  background-color: grey;
+  font-size: 4rem;
   border: 5px dashed red;
   height: 80vh;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .container {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  background-color: grey;
-  height: 70vh;
+  /* background-color: grey; */
+  /* height: 70vh; */
 }
 
 .smiley {
-  display: flex;
-  align-items: center;
-  font-size: 4rem;
+  /* display: flex; */
+  /* align-items: center; */
   border: 1px solid black;
 }
 
 .smiley-1 {
-  align-self: flex-start;
+  /* align-self: flex-start; */
 }
 </style>
 </head>
@@ -34,7 +36,8 @@ html {
   <main class="container">
     <div class="smiley smiley-1">&#128512</div>
     <div class="smiley smiley-2">&#128513</div>
-    <div class="smiley smiley-3">&#128514</div>
+    <div class="smiley smiley-3">&#128513</div>
+    <div class="smiley smiley-4">&#128514</div>
   </main>
 </body>
 </html>

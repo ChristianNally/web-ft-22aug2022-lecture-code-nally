@@ -1,0 +1,14 @@
+html {
+  background-color: lightgrey;
+  border: 3px dashed red;
+  height: 80vh;
+}
+
+span {
+  border: 5px solid green;
+}
+
+h1 {
+  background-color: darkgrey;
+  color: red;
+}
