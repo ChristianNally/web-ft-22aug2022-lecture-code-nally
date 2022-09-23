@@ -108,7 +108,7 @@ WHERE type = 'performance' AND sort < 5;
 ## JOIN
 SELECT day_description, question, answer
 FROM objectives
-JOIN days ON objectives.day_id = days.id;
+INNER JOIN days ON objectives.day_id = days.id;
 
 ## having (... because you cannot use WHERE on an aggregate function)
 
@@ -116,3 +116,9 @@ SELECT count(day_id)
 FROM objectives 
 GROUP BY day_id 
 HAVING count(day_id) > 3;
+
+# INSERT
+
+INSERT INTO days (day_description, day_mnemonic, title) VALUES
+('Week 12 Day 5', 'w12d5', 'Graduation Celebration');
+
