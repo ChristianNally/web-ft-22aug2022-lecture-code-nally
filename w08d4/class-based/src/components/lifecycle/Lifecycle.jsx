@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Lifecycle = class extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       count: 0
     };
