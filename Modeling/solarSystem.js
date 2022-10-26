@@ -1,5 +1,6 @@
 const beginningOfTime = Date.now();
 
+
 // TODO
 //
 // 1) add planets via mouse. 
@@ -15,14 +16,21 @@ const beginningOfTime = Date.now();
 // 4) investigate using something other than first order 
 // numerical integration (for improved accuracy)
 //
-// 5) add controls for deltaT, speed of time evolution, etc.
-//
 
 let DELTA_T = 50; // time-step in milliseconds
 const MASS_SIZE = 20; // ratio of pixel size to mass
 const UNIVERSE_SIZE = 666; // in pixels
 
 const listOfPlanets = [];
+
+// 1) put planets onto the canvas
+
+// 2) after a certain amount of time, calculate the new positions of the planets
+
+// 3) update the positions of the planets
+
+// 4) Go Back to Step 2
+
 
 const debugLog = function(message1,message2,message3){ // log4j, log4php, 
   console.log(message1,message2,message3);
@@ -197,13 +205,17 @@ $(document).ready(function () {
   $("div#universe").click(handleClick);
 
   const earth = new Planet({
-    name:'Earth', x:100, y:100, Vx:-3, Vy:4.4, mass:1, color:'blue',  planet: true, trail: true  });
-  const mars = new Planet({
-    name:'Mars',  x:120, y:120, Vx:-3, Vy:4.4, mass:1, color:'red',   planet: true, trail: true  });
-  const other = new Planet({
-    name:'Other', x:200, y:200, Vx:-3, Vy:4.4, mass:1, color:'green', planet: true, trail: true  });
-  const y = new Planet({ 
-    name: "Sun", mass: 2.5, planet: false, zIndex: -99 
+    name:'Earth', x:100, y:100, Vx:-3, Vy:4.4, mass:1, color:'blue',  planet: true, trail: true  
   });
+
+    const mars = new Planet({
+    name:'Mars',  x:120, y:120, Vx:-3, Vy:4.4, mass:1, color:'red',   planet: true, trail: true  });
+
+    const other = new Planet({
+    name:'Other', x:200, y:200, Vx:-3, Vy:4.4, mass:1, color:'green', planet: true, trail: true  });
+
+    const y = new Planet({ 
+      name: "Sun", mass: 2.5, planet: false, zIndex: -99 
+    });
 
 });
